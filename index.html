@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orange Pi Lab Toolkit</title>
+
+  <!-- =======================
+  START OF STYLESHEET IMPORTS
+  ======================= -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/setup-form.css">
+  <link rel="stylesheet" href="css/card-ssh.css">
+  <link rel="stylesheet" href="css/card-transfer.css">
+  <link rel="stylesheet" href="css/card-move.css">
+  <link rel="stylesheet" href="css/card-helper.css">
+  <!-- =======================
+  END OF STYLESHEET IMPORTS
+  ======================= -->
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Orange Pi Lab Toolkit</h1>
+    <p>Client-side terminal command generator for SBC classrooms.</p>
+  </header>
+
+  <!-- =======================
+  STEP 0: GLOBAL SETUP FORM
+  ======================= -->
+  <section id="setup-form" class="config-panel">
+    <h2>Step 0: Workspace Configuration</h2>
+    
+    <div class="input-group">
+      <label>1. Select Operating System</label>
+      <div class="radio-group">
+        <label><input type="radio" name="os" value="windows" checked> Windows 11</label>
+        <label><input type="radio" name="os" value="mac"> macOS</label>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="input-username">2. PC Username</label>
+      <input type="text" id="input-username" placeholder="e.g. John Doe">
+    </div>
+
+    <div class="input-group">
+      <label for="input-filename">3. Target File Name</label>
+      <input type="text" id="input-filename" placeholder="e.g. file_name.py">
+    </div>
+
+    <div class="input-group">
+      <label for="input-ip">4. Orange Pi IP Address</label>
+      <input type="text" id="input-ip" placeholder="e.g. 192.168.1.60">
+    </div>
+  </section>
+
+  <main id="workspace">
+    <!-- =======================
+    START: CARD 1 (SSH)
+    ======================= -->
+    <section class="card" id="card-ssh" data-card="ssh">
+      <header class="card-header">
+        <div class="card-title-group">
+          <span class="step-badge">Step 1</span>
+          <h3>Test Connection (SSH)</h3>
+        </div>
+        <button class="card-toggle-btn" aria-label="Toggle Card 1">
+          <span class="toggle-icon">−</span>
+        </button>
+      </header>
+      <div class="card-body">
+        <p class="step-instruction">Confirm your computer can talk to the Orange Pi over Wi-Fi.</p>
+        <div class="command-block">
+          <pre><code id="cmd-ssh">ssh orangepi@&lt;IP_ADDRESS&gt;</code></pre>
+          <button class="copy-btn" data-target="cmd-ssh">Copy</button>
+        </div>
+        <div class="callout callout-info">
+          <span class="callout-icon">🔑</span>
+          <div class="callout-text">
+            <strong>Password:</strong> <code>orangepi</code>
+            <p class="callout-sub">Typing is invisible in the terminal. Type it and hit Enter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+    START: CARD 2 (FILE TRANSFER)
+    ======================= -->
+    <section class="card" id="card-transfer" data-card="transfer">
+      <header class="card-header">
+        <div class="card-title-group">
+          <span class="step-badge">Step 2</span>
+          <h3>File Transfer Station (SCP)</h3>
+        </div>
+        <button class="card-toggle-btn" aria-label="Toggle Card 2">
+          <span class="toggle-icon">−</span>
+        </button>
+      </header>
+      <div class="card-body">
+        <div class="direction-toggle">
+          <button class="toggle-btn active" data-direction="to-pi">Send to Orange Pi</button>
+          <button class="toggle-btn" data-direction="from-pi">Fetch from Orange Pi</button>
+        </div>
+
+        <!-- View A: Send to Pi -->
+        <div class="transfer-panel" id="panel-to-pi">
+          <p class="step-instruction">Run this in your PC terminal to send the file to the Pi's /home directory.</p>
+          <div class="command-block">
+            <pre><code id="cmd-send-scp">scp ...</code></pre>
+            <button class="copy-btn" data-target="cmd-send-scp">Copy</button>
+          </div>
+        </div>
+
+        <!-- View B: Fetch from Pi (Hidden by default) -->
+        <div class="transfer-panel hidden" id="panel-from-pi">
+          <span class="step-label">Step 2.1: Run inside Orange Pi SSH</span>
+          <div class="command-block">
+            <pre><code id="cmd-fetch-prep">sudo cp ...</code></pre>
+            <button class="copy-btn" data-target="cmd-fetch-prep">Copy</button>
+          </div>
+          <span class="step-label">Step 2.2: Run in NEW local PC Terminal</span>
+          <div class="command-block">
+            <pre><code id="cmd-fetch-scp">scp ...</code></pre>
+            <button class="copy-btn" data-target="cmd-fetch-scp">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+    START: CARD 3 (SUDO MOVE)
+    ======================= -->
+    <section class="card" id="card-move" data-card="move">
+      <header class="card-header">
+        <div class="card-title-group">
+          <span class="step-badge">Step 3</span>
+          <h3>Move File to Project Folder</h3>
+        </div>
+        <button class="card-toggle-btn" aria-label="Toggle Card 3">
+          <span class="toggle-icon">−</span>
+        </button>
+      </header>
+      <div class="card-body">
+        <p class="step-instruction">Run this <strong>inside your Orange Pi terminal</strong> to move the uploaded file.</p>
+        <div class="command-block">
+          <pre><code id="cmd-sudo-mv">sudo mv ...</code></pre>
+          <button class="copy-btn" data-target="cmd-sudo-mv">Copy</button>
+        </div>
+        <div class="callout callout-warning">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-text">
+            <strong>Sudo Password:</strong> <code>orangepi</code>
+            <p class="callout-sub">Make sure you paste this inside the SSH terminal, NOT your local PC terminal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+    START: CARD 5 (TERMINAL HELPER)
+    ======================= -->
+    <section class="card" id="card-helper" data-card="helper">
+      <header class="card-header">
+        <div class="card-title-group">
+          <span class="step-badge">Step 5</span>
+          <h3>Terminal Cheat Sheet</h3>
+        </div>
+        <button class="card-toggle-btn" aria-label="Toggle Card 5">
+          <span class="toggle-icon">−</span>
+        </button>
+      </header>
+      <div class="card-body">
+        <div class="search-container">
+          <input type="text" id="helper-search" class="search-input" placeholder="Type what you want to do (e.g., list files, run python)...">
+        </div>
+        <div class="helper-tags">
+          <button class="tag-btn" data-keyword="list">List Files</button>
+          <button class="tag-btn" data-keyword="run">Run Python</button>
+          <button class="tag-btn" data-keyword="ip">Check IP</button>
+        </div>
+        <div id="helper-results" class="helper-results-container">
+          <!-- JS will inject command cards here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================
+  START OF JAVASCRIPT ENTRY POINT
+  ======================= -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

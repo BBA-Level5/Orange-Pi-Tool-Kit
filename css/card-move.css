@@ -1,0 +1,10 @@
+/* =======================
+   CARD 3 STYLES
+   ======================= */
+.callout-warning {
+  background: rgba(245, 158, 11, 0.08);
+  border-left-color: var(--accent-amber);
+}
+.callout-warning strong {
+  color: var(--accent-amber);
+}

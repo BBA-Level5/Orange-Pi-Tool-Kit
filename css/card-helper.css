@@ -1,0 +1,51 @@
+/* =======================
+   CARD 5 STYLES
+   ======================= */
+.search-container {
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: #000;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.helper-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag-btn {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.helper-item {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.helper-header {
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+}
+
+.helper-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}

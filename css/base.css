@@ -1,0 +1,71 @@
+/* =======================
+   START OF DESIGN TOKENS
+   ======================= */
+:root {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --border-subtle: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-cyan: #38bdf8;
+  --accent-green: #22c55e;
+  --accent-amber: #f59e0b;
+
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, monospace;
+
+  --radius-md: 8px;
+  --transition-fast: 150ms ease;
+}
+
+/* =======================
+   GLOBAL RESET & TYPOGRAPHY
+   ======================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* =======================
+   REUSABLE CARD COMPONENTS
+   ======================= */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.card-body {
+  padding: 1.5rem;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+
+.card.collapsed .card-body {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none;
+  border-bottom: none;
+}
