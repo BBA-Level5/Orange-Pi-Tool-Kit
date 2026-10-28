@@ -8,7 +8,7 @@ const state = {
   folderName: 'Eco_bot', // Default as requested
   fileName: '',
   ip: '',
-  targetPath: '/opt/bigbang/students/ai_eco_bot/ECO/'
+  targetPath: '/opt/bigbang/students/ai_eco_bot/AIECO/'
 };
 
 /**
